@@ -1,8 +1,7 @@
 import { Gameboard } from "../gameboard";
+import { Ship } from "../ship";
 
 describe("Gameboard", () => {
-  //   let gb;
-  //   beforeEach(() => (gb = new Gameboard()));
   const gb = new Gameboard();
 
   it("should be 10x10", () => {
@@ -20,5 +19,38 @@ describe("Gameboard", () => {
     expect(gb.isValidCoordinate(-1, 5)).toBe(false);
     expect(gb.isValidCoordinate(0, 11)).toBe(false);
     expect(gb.isValidCoordinate(-2, 9)).toBe(false);
+  });
+
+  it("place ship on right coordinate", () => {
+    const ship = new Ship(1);
+    gb.placeShip(ship, 0, 0);
+    expect(gb.grid[0][0]).toBe(ship);
+    gb.placeShip(ship, 2, 5);
+    expect(gb.grid[2][5]).toBe(ship);
+    gb.placeShip(ship, 6, 6);
+    expect(gb.grid[6][6]).toBe(ship);
+  });
+
+  it("place ship length 2 x-axis on right coordinate", () => {
+    const ship = new Ship(2);
+    gb.placeShip(ship, 0, 0);
+    expect(gb.grid[0][0]).toBe(ship);
+    expect(gb.grid[1][0]).toBe(ship);
+    expect(gb.grid[2][0]).toBe(null);
+  });
+
+  it("place ship length 3 y-axis on right coordinate", () => {
+    const ship = new Ship(3);
+    gb.placeShip(ship, 0, 0, false);
+    expect(gb.grid[0][0]).toBe(ship);
+    expect(gb.grid[0][1]).toBe(ship);
+    expect(gb.grid[0][2]).toBe(ship);
+  });
+
+  it("should not place ship if length is over board", () => {
+    const ship = new Ship(3);
+    gb.placeShip(ship, 8, 0, true);
+    expect(gb.grid[8][0]).toBe(null);
+    expect(gb.grid[9][0]).toBe(null);
   });
 });

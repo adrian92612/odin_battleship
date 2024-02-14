@@ -6,7 +6,7 @@ class Ship {
   }
 
   hit = () => this.hits++;
-  isSunked = () => (this.sunk = this.hits < this.length ? false : true);
+  isSunked = () => (this.sunk = this.hits >= this.length);
 }
 
 export { Ship };

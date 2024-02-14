@@ -1,19 +1,28 @@
+import { Ship } from "./ship";
+
 class Gameboard {
   constructor() {
     this.size = 10;
     this.grid = this.createGrid();
   }
 
-  createGrid() {
-    return Array.from({ length: this.size }).fill(
-      Array.from({ length: this.size }).fill(null)
-    );
+  createGrid = () =>
+    Array.from({ length: this.size }, () => Array(this.size).fill(null));
+
+  isValidCoordinate(x, y, length = 0, isXAxis = true) {
+    if (x < 0 && x <= this.size && y < 0 && y <= this.size) {
+      return isXAxis ? x + length <= this.size : y + length <= this.size;
+    }
+    return false;
   }
 
-  isValidCoordinate = (x, y) =>
-    x > -1 && x <= this.size && y > -1 && y <= this.size;
+  placeShip(ship, x, y, isXAxis = true) {
+    if (this.isValidCoordinate(x, y, ship.length, isXAxis)) {
+      for (let i = 0; i < ship.length; i++) {
+        isXAxis ? (this.grid[x + i][y] = ship) : (this.grid[x][y + i] = ship);
+      }
+    }
+  }
 }
-
-// console.log(new Gameboard().grid);
 
 export { Gameboard };
