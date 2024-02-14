@@ -10,14 +10,14 @@ class Gameboard {
     Array.from({ length: this.size }, () => Array(this.size).fill(null));
 
   isValidCoordinate(x, y, length = 0, isXAxis = true) {
-    if (x < 0 && x <= this.size && y < 0 && y <= this.size) {
-      return isXAxis ? x + length <= this.size : y + length <= this.size;
+    if (x > -1 && x < this.size && y > -1 && y < this.size) {
+      return isXAxis ? x + length < this.size : y + length < this.size;
     }
     return false;
   }
 
   placeShip(ship, x, y, isXAxis = true) {
-    if (this.isValidCoordinate(x, y, ship.length, isXAxis)) {
+    if (this.isValidCoordinate(x, y, ship.length - 1, isXAxis)) {
       for (let i = 0; i < ship.length; i++) {
         isXAxis ? (this.grid[x + i][y] = ship) : (this.grid[x][y + i] = ship);
       }
