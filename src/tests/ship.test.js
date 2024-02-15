@@ -12,7 +12,7 @@ describe("ship", () => {
   test("ship should still be floating", () => {
     bShip.hit();
     bShip.hit();
-    expect(bShip.isSunked()).toBe(false);
+    expect(bShip.sunk).toBe(false);
   });
 
   test("ship has sunk", () => {
@@ -20,6 +20,6 @@ describe("ship", () => {
     bShip.hit();
     bShip.hit();
     bShip.hit();
-    expect(bShip.isSunked()).toBe(true);
+    expect(bShip.sunk).toBe(true);
   });
 });

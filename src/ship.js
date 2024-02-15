@@ -5,8 +5,11 @@ class Ship {
     this.sunk = false;
   }
 
-  hit = () => this.hits++;
-  isSunked = () => (this.sunk = this.hits >= this.length);
+  hit = () => {
+    this.hits++;
+    this.isSunk();
+  };
+  isSunk = () => (this.sunk = this.hits >= this.length);
 }
 
 export { Ship };

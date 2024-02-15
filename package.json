@@ -5,7 +5,9 @@
   "main": "index.js",
   "scripts": {
     "build": "webpack",
-    "test": "jest"
+    "w": "webpack --watch",
+    "test": "jest",
+    "testw": "jest --watch"
   },
   "keywords": [],
   "author": "",
