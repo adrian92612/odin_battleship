@@ -61,5 +61,7 @@ describe("Gameboard", () => {
     gb.receiveAttack(0, 0);
     expect(gb.grid[0][0]).toBe(true);
     expect(ship.hits).toBe(1);
+    expect(gb.receiveAttack(0, 0)).toBe("NO");
+    expect(gb.receiveAttack(0, 3)).toBe("Missed");
   });
 });

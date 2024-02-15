@@ -30,9 +30,16 @@ class Gameboard {
   }
 
   receiveAttack(x, y) {
-    if (!this.isValidCoordinate(x, y)) return;
-    let block = this.grid[x][y];
-    if (block instanceof Ship) block.hit();
+    if (!this.isValidCoordinate(x, y) || this.grid[x][y] == true) {
+      console.log("NO");
+      return "NO";
+    }
+    if (this.grid[x][y] instanceof Ship) this.grid[x][y].hit();
+    if (this.grid[x][y] == null) {
+      this.grid[x][y] = true;
+      console.log("Missed");
+      return "Missed";
+    }
     this.grid[x][y] = true;
   }
 }
