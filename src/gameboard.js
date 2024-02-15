@@ -29,7 +29,12 @@ class Gameboard {
     }
   }
 
-  receiveAttack(x, y) {}
+  receiveAttack(x, y) {
+    if (!this.isValidCoordinate(x, y)) return;
+    let block = this.grid[x][y];
+    if (block instanceof Ship) block.hit();
+    this.grid[x][y] = true;
+  }
 }
 
 export { Gameboard };

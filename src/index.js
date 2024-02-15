@@ -7,8 +7,7 @@ gb.placeShip(ship, 4, 5, true);
 
 console.log(gb.grid);
 
-gb.grid[4][5].hit();
-gb.grid[4][5].hit();
-gb.grid[4][5].hit();
-gb.grid[4][5].hit();
+gb.receiveAttack(4, 5);
+
 console.log(gb.grid[4][5]);
+console.log(gb.grid);

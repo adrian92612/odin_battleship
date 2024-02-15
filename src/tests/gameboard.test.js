@@ -53,4 +53,13 @@ describe("Gameboard", () => {
     expect(gb.grid[8][0]).toBe(null);
     expect(gb.grid[9][0]).toBe(null);
   });
+
+  it("should hit coordinate w/ ship", () => {
+    const ship = new Ship(4);
+    const gb = new Gameboard();
+    gb.placeShip(ship, 0, 0);
+    gb.receiveAttack(0, 0);
+    expect(gb.grid[0][0]).toBe(true);
+    expect(ship.hits).toBe(1);
+  });
 });
