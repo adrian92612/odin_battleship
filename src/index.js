@@ -3,7 +3,7 @@ import { Gameboard } from "./gameboard";
 
 const ship = new Ship(4);
 const gb = new Gameboard();
-gb.placeShip(ship, 0, 0, true);
+gb.placeShip(ship, 9, 0, false);
 
 gb.receiveAttack(0, 0);
 console.log(gb.grid);

@@ -1,3 +1,4 @@
+import { experiments } from "webpack";
 import { Gameboard } from "../gameboard";
 import { Ship } from "../ship";
 
@@ -59,9 +60,11 @@ describe("Gameboard", () => {
     const gb = new Gameboard();
     gb.placeShip(ship, 0, 0);
     gb.receiveAttack(0, 0);
+    gb.receiveAttack(0, 3);
     expect(gb.grid[0][0]).toBe(true);
     expect(ship.hits).toBe(1);
-    expect(gb.receiveAttack(0, 0)).toBe("NO");
-    expect(gb.receiveAttack(0, 3)).toBe("Missed");
+    expect(gb.receiveAttack(0, 0)).toBe(undefined);
+    expect(gb.receiveAttack(6, 2)).toBe(undefined);
+    expect(gb.grid[0][3]).toBe(false);
   });
 });

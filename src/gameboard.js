@@ -18,10 +18,25 @@ class Gameboard {
     return isXAxis ? startX + length < this.size : startY + length < this.size;
   };
 
+  noOtherShip = (length, isXAxis = true, startX, startY) => {
+    if (isXAxis) {
+      for (let i = 0; i < length; i++) {
+        if (this.grid[x + i][y] !== null) return false;
+      }
+    } else {
+      for (let i = 0; i < length; i++) {
+        if (this.grid[x][y + i] !== null) return false;
+      }
+    }
+    return true;
+  };
+
+  // update placeShip not place ship if another ship is in
   placeShip(ship, x, y, isXAxis = true) {
     if (
       this.isValidCoordinate(x, y) &&
-      this.isOverBoard(ship.length - 1, isXAxis, x, y)
+      this.isOverBoard(ship.length - 1, isXAxis, x, y) &&
+      this.noOtherShip(ship.lenght, isXAxis, x, y)
     ) {
       for (let i = 0; i < ship.length; i++) {
         isXAxis ? (this.grid[x + i][y] = ship) : (this.grid[x][y + i] = ship);
@@ -30,17 +45,13 @@ class Gameboard {
   }
 
   receiveAttack(x, y) {
-    if (!this.isValidCoordinate(x, y) || this.grid[x][y] == true) {
-      console.log("NO");
-      return "NO";
-    }
-    if (this.grid[x][y] instanceof Ship) this.grid[x][y].hit();
-    if (this.grid[x][y] == null) {
+    if (!this.isValidCoordinate(x, y)) return;
+    if (this.grid[x][y] instanceof Ship) {
+      this.grid[x][y].hit();
       this.grid[x][y] = true;
-      console.log("Missed");
-      return "Missed";
+    } else if (this.grid[x][y] == null) {
+      this.grid[x][y] = false;
     }
-    this.grid[x][y] = true;
   }
 }
 
