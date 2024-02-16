@@ -2,8 +2,10 @@ import { Ship } from "./ship";
 import { Gameboard } from "./gameboard";
 
 const ship = new Ship(4);
+const ship2 = new Ship(4);
 const gb = new Gameboard();
 gb.placeShip(ship, 9, 0, false);
+gb.placeShip(ship2, 6, 0, true);
 
 gb.receiveAttack(0, 0);
 console.log(gb.grid);

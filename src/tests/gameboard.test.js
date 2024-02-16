@@ -3,7 +3,10 @@ import { Gameboard } from "../gameboard";
 import { Ship } from "../ship";
 
 describe("Gameboard", () => {
-  const gb = new Gameboard();
+  let gb;
+  beforeEach(() => {
+    gb = new Gameboard();
+  });
 
   it("should be 10x10", () => {
     expect(gb.grid.length).toBe(10);
@@ -57,7 +60,6 @@ describe("Gameboard", () => {
 
   it("should hit coordinate w/ ship", () => {
     const ship = new Ship(4);
-    const gb = new Gameboard();
     gb.placeShip(ship, 0, 0);
     gb.receiveAttack(0, 0);
     gb.receiveAttack(0, 3);
@@ -66,5 +68,14 @@ describe("Gameboard", () => {
     expect(gb.receiveAttack(0, 0)).toBe(undefined);
     expect(gb.receiveAttack(6, 2)).toBe(undefined);
     expect(gb.grid[0][3]).toBe(false);
+  });
+
+  it("should not place ship if occupied", () => {
+    const ship = new Ship(4);
+    const ship2 = new Ship(4);
+    gb.placeShip(ship, 0, 0);
+    gb.placeShip(ship2, 0, 0, false);
+    expect(gb.grid[0][0]).toBe(ship);
+    expect(gb.grid[0][1]).toBe(null);
   });
 });

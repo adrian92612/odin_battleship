@@ -21,11 +21,11 @@ class Gameboard {
   noOtherShip = (length, isXAxis = true, startX, startY) => {
     if (isXAxis) {
       for (let i = 0; i < length; i++) {
-        if (this.grid[x + i][y] !== null) return false;
+        if (this.grid[startX + i][startY] != null) return false;
       }
     } else {
       for (let i = 0; i < length; i++) {
-        if (this.grid[x][y + i] !== null) return false;
+        if (this.grid[startX][startY + i] != null) return false;
       }
     }
     return true;
@@ -36,7 +36,7 @@ class Gameboard {
     if (
       this.isValidCoordinate(x, y) &&
       this.isOverBoard(ship.length - 1, isXAxis, x, y) &&
-      this.noOtherShip(ship.lenght, isXAxis, x, y)
+      this.noOtherShip(ship.length, isXAxis, x, y)
     ) {
       for (let i = 0; i < ship.length; i++) {
         isXAxis ? (this.grid[x + i][y] = ship) : (this.grid[x][y + i] = ship);
