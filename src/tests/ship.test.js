@@ -1,8 +1,6 @@
 import { Ship } from "../ship";
 
 describe("ship", () => {
-  //   let bShip;
-  //   beforeEach(() => (bShip = new Ship(4)));
   const bShip = new Ship(4);
 
   test("length set correctly", () => {

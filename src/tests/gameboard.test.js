@@ -78,4 +78,19 @@ describe("Gameboard", () => {
     expect(gb.grid[0][0]).toBe(ship);
     expect(gb.grid[0][1]).toBe(null);
   });
+
+  it("should end the game", () => {
+    const ship = new Ship(1);
+    gb.placeShip(ship, 0, 0);
+    gb.receiveAttack(0, 0);
+    expect(gb.gameOver).toBe(true);
+  });
+
+  it("should not end the game", () => {
+    const ship = new Ship(3);
+    gb.placeShip(ship, 0, 0);
+    gb.receiveAttack(0, 0);
+    gb.receiveAttack(1, 0);
+    expect(gb.gameOver).toBe(false);
+  });
 });

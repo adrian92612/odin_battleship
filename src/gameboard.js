@@ -4,6 +4,7 @@ class Gameboard {
   constructor() {
     this.size = 10;
     this.grid = this.createGrid();
+    this.gameOver = false;
   }
 
   createGrid = () => {
@@ -17,6 +18,15 @@ class Gameboard {
   isOverBoard = (length, isXAxis = true, startX, startY) => {
     return isXAxis ? startX + length < this.size : startY + length < this.size;
   };
+
+  isGameOver() {
+    for (const columns of this.grid) {
+      for (const block of columns) {
+        if (block instanceof Ship) return;
+      }
+    }
+    this.gameOver = true;
+  }
 
   noOtherShip = (length, isXAxis = true, startX, startY) => {
     if (isXAxis) {
@@ -49,12 +59,11 @@ class Gameboard {
     if (this.grid[x][y] instanceof Ship) {
       this.grid[x][y].hit();
       this.grid[x][y] = true;
+      this.isGameOver();
     } else if (this.grid[x][y] == null) {
       this.grid[x][y] = false;
     }
   }
-
-  //  ------------------- Check if no ships are left in the board--------------------------
 }
 
 export { Gameboard };
