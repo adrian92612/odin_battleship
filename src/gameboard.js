@@ -53,6 +53,8 @@ class Gameboard {
       this.grid[x][y] = false;
     }
   }
+
+  //  ------------------- Check if no ships are left in the board--------------------------
 }
 
 export { Gameboard };
