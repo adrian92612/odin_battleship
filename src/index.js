@@ -11,6 +11,10 @@ const compBoard = comp.gameboard;
 
 setShips(humanBoard);
 setShips(compBoard);
+const humanBoardContainer = document.querySelector('#human-board')
+const compBoardContainer = document.querySelector('#computer-board')
+humanBoard.renderBoard(humanBoardContainer)
+compBoard.renderBoard(compBoardContainer)
 
 function setShips(board) {
   board.placeShip(new Ship(4), 0, 0);

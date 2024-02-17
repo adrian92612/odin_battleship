@@ -1,3 +1,4 @@
+import * as dom from "./dom";
 import { Ship } from "./ship";
 
 class Gameboard {
@@ -65,7 +66,13 @@ class Gameboard {
     }
   }
 
-  renderBoard() {}
+  renderBoard(container) {
+    for (const [x,row] of this.grid.entries()) {
+      for (const [y,block] of row.entries()) {
+        dom.addGridItem(container,x,y,this.grid)
+      }
+    }
+  }
 }
 
 export { Gameboard };
