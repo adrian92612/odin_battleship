@@ -28,5 +28,12 @@ describe("Player and computer", () => {
     expect(compBoard.grid[0][0] instanceof Ship).toBe(false);
   });
 
-  it("comp can attack entire board w/o repeating", () => {});
+  it("comp can attack entire board w/o repeating", () => {
+    for (let i = 0; i < 100; i++) {
+      comp.attackPlayer(playerBoard);
+    }
+    for (const row of playerBoard.grid) {
+      expect(row.includes(null)).toBe(false);
+    }
+  });
 });
