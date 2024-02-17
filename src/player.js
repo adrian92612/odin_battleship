@@ -27,3 +27,5 @@ class Computer extends Player {
     super.attack(playerGameboard, x, y);
   }
 }
+
+export { Player, Computer };
