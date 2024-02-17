@@ -1,0 +1,22 @@
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+#app {
+    min-height: 100dvh;
+    width: 95%;
+    margin: 0 auto;
+    border: 2px solid black;
+    display: flex;
+    padding: 50px;
+    justify-content: space-between;
+    align-items: center;
+}
+
+#human-board,#computer-board {
+    height: 500px;
+    width: 40%;
+    border: 1px solid red;
+}
