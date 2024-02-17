@@ -64,6 +64,8 @@ class Gameboard {
       this.grid[x][y] = false;
     }
   }
+
+  renderBoard() {}
 }
 
 export { Gameboard };
