@@ -1,3 +1,4 @@
+import { human } from "."
 
 function addGridItem(container,x,y,grid) {
     const gridItem = document.createElement('div')
@@ -8,4 +9,14 @@ function addGridItem(container,x,y,grid) {
     container.append(gridItem)
 }
 
-export {addGridItem}
+function addClickAttackEvent(container) {
+    for (const block of container.children) {
+        if (block.classList.contains('grid-item')) {
+         block.addEventListener('click', ()=> {
+            console.log(block)
+        }, {once:true})
+        }
+    }
+}
+
+export {addGridItem,addClickAttackEvent}

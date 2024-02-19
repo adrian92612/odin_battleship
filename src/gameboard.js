@@ -72,6 +72,8 @@ class Gameboard {
         dom.addGridItem(container,x,y,this.grid)
       }
     }
+    // console.log(container.id)
+    if (container.id === 'computer-board') dom.addClickAttackEvent(container)
   }
 }
 

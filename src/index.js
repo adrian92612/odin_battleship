@@ -25,4 +25,6 @@ function setShips(board) {
   console.log(board);
 }
 
+export {human,comp}
+
 // while (humanBoard.isGameOver || compBoard.isGameOver) {}
