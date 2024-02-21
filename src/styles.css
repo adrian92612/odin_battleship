@@ -40,3 +40,11 @@ span {
 .ship {
     background-color: aquamarine;
 }
+
+.missed {
+    background-color: blue;
+}
+
+.sunk {
+    background-color: red;
+}

@@ -22,8 +22,8 @@ class Gameboard {
 
   isGameOver() {
     for (const columns of this.grid) {
-      for (const block of columns) {
-        if (block instanceof Ship) return;
+      for (const cell of columns) {
+        if (cell instanceof Ship) return;
       }
     }
     this.gameOver = true;
@@ -57,23 +57,20 @@ class Gameboard {
 
   receiveAttack(x, y) {
     if (!this.isValidCoordinate(x, y)) return;
+    dom.updateCell(x,y)
     if (this.grid[x][y] instanceof Ship) {
       this.grid[x][y].hit();
       this.grid[x][y] = true;
       this.isGameOver();
-    } else if (this.grid[x][y] == null) {
-      this.grid[x][y] = false;
     }
   }
 
   renderBoard(container) {
     for (const [x,row] of this.grid.entries()) {
-      for (const [y,block] of row.entries()) {
+      for (const [y,cell] of row.entries()) {
         dom.addGridItem(container,x,y,this.grid)
       }
     }
-    // console.log(container.id)
-    if (container.id === 'computer-board') dom.addClickAttackEvent(container)
   }
 }
 

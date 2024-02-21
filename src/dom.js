@@ -1,4 +1,5 @@
 import { human } from "."
+import { Ship } from "./ship"
 
 function addGridItem(container,x,y,grid) {
     const gridItem = document.createElement('div')
@@ -9,14 +10,29 @@ function addGridItem(container,x,y,grid) {
     container.append(gridItem)
 }
 
-function addClickAttackEvent(container) {
-    for (const block of container.children) {
-        if (block.classList.contains('grid-item')) {
-         block.addEventListener('click', ()=> {
-            console.log(block)
+// function updateCell(x,y) {
+//     console.log(cell)
+//     if (cell instanceof Ship) {
+//         cell.classList.add('sunk') 
+//     } else {
+//         cell.classList.add('missed')
+//     }
+// }
+
+function addClickAttackEvent(human,comp) {
+    const container = document.querySelector('#computer-board')
+    for (const cell of container.children) {
+        if (cell.classList.contains('grid-item')) {
+         cell.addEventListener('click', ()=> {
+            human.attack(comp.gameboard,cell.dataset.x,cell.dataset.y)
+            comp.attackPlayer(human.gameboard)
+            if (comp.gameboard.gameOver) {
+                alert('end!')
+                window.location.reload()
+            }
         }, {once:true})
         }
     }
 }
 
-export {addGridItem,addClickAttackEvent}
+export {addGridItem,addClickAttackEvent, updateCell}
