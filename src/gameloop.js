@@ -16,7 +16,7 @@ function setShips(board) {
   board.placeShip(new Ship(3), 1, 5);
   board.placeShip(new Ship(2), 7, 7, false);
   board.placeShip(new Ship(1), 6, 5);
-  console.log(board);
+  // console.log(board);
 }
 
 export { setPlayers };

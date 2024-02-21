@@ -5,6 +5,7 @@ class Gameboard {
   constructor() {
     this.size = 10;
     this.grid = this.createGrid();
+    this.cells = []
     this.gameOver = false;
   }
 
@@ -57,7 +58,6 @@ class Gameboard {
 
   receiveAttack(x, y) {
     if (!this.isValidCoordinate(x, y)) return;
-    dom.updateCell(x,y)
     if (this.grid[x][y] instanceof Ship) {
       this.grid[x][y].hit();
       this.grid[x][y] = true;
@@ -65,7 +65,7 @@ class Gameboard {
     }
   }
 
-  renderBoard(container) {
+  renderBoard(container,player) {
     for (const [x,row] of this.grid.entries()) {
       for (const [y,cell] of row.entries()) {
         dom.addGridItem(container,x,y,this.grid)

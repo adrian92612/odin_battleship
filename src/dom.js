@@ -1,23 +1,20 @@
-import { human } from "."
-import { Ship } from "./ship"
+import { Player } from "./player"
 
 function addGridItem(container,x,y,grid) {
     const gridItem = document.createElement('div')
     if (grid[x][y] != null) gridItem.classList.add('ship')
+    if (container.id === 'computer-board') gridItem.classList.add('compShip')
     gridItem.classList.add('grid-item')
     gridItem.dataset.x = x
     gridItem.dataset.y = y
+    gridItem.dataset.c = container.id
     container.append(gridItem)
+    return gridItem
 }
 
-// function updateCell(x,y) {
-//     console.log(cell)
-//     if (cell instanceof Ship) {
-//         cell.classList.add('sunk') 
-//     } else {
-//         cell.classList.add('missed')
-//     }
-// }
+function updateCell(cell){
+    cell.classList.contains('ship') ? cell.classList.add('sunk') :cell.classList.add('missed')
+}
 
 function addClickAttackEvent(human,comp) {
     const container = document.querySelector('#computer-board')
@@ -26,7 +23,7 @@ function addClickAttackEvent(human,comp) {
          cell.addEventListener('click', ()=> {
             human.attack(comp.gameboard,cell.dataset.x,cell.dataset.y)
             comp.attackPlayer(human.gameboard)
-            if (comp.gameboard.gameOver) {
+            if (comp.gameboard.gameOver || human.gameboard.gameOver) {
                 alert('end!')
                 window.location.reload()
             }
@@ -35,4 +32,4 @@ function addClickAttackEvent(human,comp) {
     }
 }
 
-export {addGridItem,addClickAttackEvent, updateCell}
+export {addGridItem,addClickAttackEvent,updateCell}

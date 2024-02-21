@@ -41,6 +41,10 @@ span {
     background-color: aquamarine;
 }
 
+.compShip {
+    background-color: white;
+}
+
 .missed {
     background-color: blue;
 }
