@@ -6,9 +6,13 @@
     <title>Battleship</title>
   </head>
   <body>
-    <div id="app">
+    <form action="#" class="player-name">
+      <input type="text" id="name" placeholder="Admiral Kunkka" required>
+      <button type="submit">Enter Name</button>
+    </form>
+    <div id="app" style="display: none;">
       <div class="wrapper">
-        <p>Human</p>
+        <p id="name-tag">Human</p>
         <div id="human-board">
       </div>
       </div>

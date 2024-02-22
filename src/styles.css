@@ -10,10 +10,38 @@
     margin: 0 auto;
     border: 2px solid black;
     display: flex;
+    flex-wrap: wrap;
     padding: 50px;
     gap: 50px;
     justify-content: space-between;
     align-items: center;
+    position: relative;
+}
+
+.player-name {
+    border: 2px solid black;
+    padding: 20px;
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%,-50%);
+    z-index: 1;
+    background-color: beige;
+}
+
+.hide-form {
+    display: none;
+}
+
+.player-name > input, button {
+    background-color: transparent;
+    padding: 5px 10px;
+    border-radius: 5px;
+    font-weight: bold;
+    border: 2px solid black
 }
 
 #human-board,#computer-board {

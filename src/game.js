@@ -1,5 +1,7 @@
+import { getPlayerName } from "./dom";
 import { Player, Computer } from "./player";
 import { Ship } from "./ship";
+import * as dom from './dom'
 
 function setPlayers(human, comp) {
   human = new Player("Adrian");
@@ -11,7 +13,19 @@ function setPlayers(human, comp) {
 }
 
 async function start() {
-
+  const name = await getPlayerName()
+  const human = new Player(name)
+  const comp = new Computer()
+  const humanBoard = human.gameboard;
+  const compBoard = comp.gameboard;
+  
+  setShips(humanBoard);
+  setShips(compBoard);
+  const humanBoardContainer = document.querySelector('#human-board')
+  const compBoardContainer = document.querySelector('#computer-board')
+  humanBoard.renderBoard(humanBoardContainer)
+  compBoard.renderBoard(compBoardContainer)
+  dom.addClickAttackEvent(human,comp)
 }
 
 function setShips(board) {
@@ -32,4 +46,4 @@ function startTurn(human,comp,cell) {
   }
 }
 
-export { setPlayers,startTurn };
+export { setPlayers,startTurn,start };

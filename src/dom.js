@@ -24,4 +24,20 @@ function addClickAttackEvent(human,comp) {
     }
 }
 
-export {addGridItem,addClickAttackEvent,updateCell}
+function getPlayerName() {
+    const form = document.querySelector('.player-name')
+    const name = document.querySelector('#name')
+    const nameTag = document.querySelector('#name-tag')
+    const appContainer = document.querySelector('#app')
+    return new Promise((res,rej)=> {
+        form.addEventListener('submit',(e)=>{
+            e.preventDefault()
+            form.classList.add('hide-form')
+            appContainer.removeAttribute('style')
+            nameTag.innerText = name.value
+            res(name.value)
+        })
+    })
+}
+
+export {addGridItem,addClickAttackEvent,updateCell,getPlayerName}
