@@ -74,4 +74,14 @@ class Gameboard {
   }
 }
 
-export { Gameboard };
+function startTurn(human,comp,cell) {
+  human.attack(comp.gameboard,cell.dataset.x,cell.dataset.y)
+  comp.attackPlayer(human.gameboard)
+  if (comp.gameboard.gameOver || human.gameboard.gameOver) {
+      window.setTimeout(()=>{
+        alert('end!')
+      window.location.reload()},0)
+  }
+}
+
+export { Gameboard,startTurn };

@@ -32,11 +32,3 @@ class Computer extends Player {
 }
 
 export { Player, Computer };
-
-class Player2 {
-  constructor(humanName = 'some dude') {
-    this.players = [humanName, 'Admiral AI']
-    this.players[0].gameboard = new Gameboard()
-    this.players[1].gameboard = new Gameboard()
-  }
-}

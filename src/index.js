@@ -1,7 +1,6 @@
 import "./styles.css";
 
 import { Ship } from "./ship";
-import { Gameboard } from "./gameboard";
 import { Player, Computer } from "./player";
 import * as dom from './dom'
 
@@ -10,13 +9,13 @@ const comp = new Computer();
 const humanBoard = human.gameboard;
 const compBoard = comp.gameboard;
 
-setShips(humanBoard);
-setShips(compBoard);
 const humanBoardContainer = document.querySelector('#human-board')
 const compBoardContainer = document.querySelector('#computer-board')
 humanBoard.renderBoard(humanBoardContainer)
 compBoard.renderBoard(compBoardContainer)
 dom.addClickAttackEvent(human,comp)
+setShips(humanBoard);
+setShips(compBoard);
 
 function setShips(board) {
   board.placeShip(new Ship(4), 0, 0);

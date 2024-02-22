@@ -1,3 +1,4 @@
+import { startTurn } from "./game"
 import { Player } from "./player"
 
 function addGridItem(container,x,y,grid) {
@@ -19,16 +20,7 @@ function updateCell(cell){
 function addClickAttackEvent(human,comp) {
     const container = document.querySelector('#computer-board')
     for (const cell of container.children) {
-        if (cell.classList.contains('grid-item')) {
-         cell.addEventListener('click', ()=> {
-            human.attack(comp.gameboard,cell.dataset.x,cell.dataset.y)
-            comp.attackPlayer(human.gameboard)
-            if (comp.gameboard.gameOver || human.gameboard.gameOver) {
-                alert('end!')
-                window.location.reload()
-            }
-        }, {once:true})
-        }
+         cell.addEventListener('click', ()=> startTurn(human,comp,cell), {once:true})
     }
 }
 
